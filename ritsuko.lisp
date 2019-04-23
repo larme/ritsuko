@@ -103,18 +103,17 @@
 						     :key #'car)))
 			(list month-idx day-idx draw-info))))))
 
-(defun make-graph ()
+(defun make-graph (output-path)
   (let ((*color-stack* (list :default)))
     (multiple-value-bind (month-num draw-args)
 	(prepare-draw-data (load-entries))
       (let* ((*month-num* month-num)
 	     (canvas-width +canvas-width+)
 	     (canvas-height (cal-canvas-height)))
-	(print *month-num*)
 	(with-canvas (:width canvas-width :height canvas-height)
 	  (set-rgb-fill 1 1 1)
 	  (clear-canvas)
 	  (loop
 	    for draw-arg in draw-args
 	    do (apply #'draw-bar draw-arg))
-	  (save-png "~/x/tmp/test.png"))))))
+	  (save-png output-path))))))

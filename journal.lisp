@@ -2,7 +2,7 @@
 
 (in-package #:ritsuko)
 
-(defvar *journal-path* "~/.journal")
+(defvar *journal-path* "~/x/journal.txt")
 
 (defun load-lines ()
   (uiop:read-file-lines *journal-path*))
